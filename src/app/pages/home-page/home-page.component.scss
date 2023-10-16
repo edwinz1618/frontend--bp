@@ -1,0 +1,147 @@
+@use 'color';
+
+.container {
+    padding: 5em;
+
+    &__align-filter {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &-table {
+        margin-top: 20px;
+        background-color: white;
+        min-width: 800px;
+
+        .table {
+            width: 100%;
+            padding: 15px;
+            border-spacing: 0px;
+
+            thead {
+                background-color: color.$grey;
+                height: 43px;
+
+                th {
+                    text-align: left;
+                }
+
+                .info {
+                    display: flex;
+                    gap: 8px;
+                }
+            }
+
+            tbody tr {
+                height: 43px;
+
+                td {
+                    border-bottom: 1px solid #cfd2d5;
+
+                    .img-logo {
+                        height: 30px;
+                        border-radius: 24px;
+                        width: 30px;
+                        border: 1px solid #80808036;
+                    }
+
+                    .icon-option {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+
+            &-select {
+                width: 70px;
+                height: 25px;
+                text-align: center;
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+.th-center {
+    text-align: center !important;
+    width: 180px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+
+    &-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 50px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        padding: 10px 10px;
+        z-index: 1;
+        cursor: pointer;
+    }
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+.modal-background {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal-background.show {
+    display: flex;
+}
+
+
+.loading {
+    position: relative;
+    
+
+
+    &:after {
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+        left: 0;
+        content: "";
+        display: block;
+        width: 100%;
+        height: 24px;
+        background-image: linear-gradient( 100deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0) 80% );
+        background-size: 200px 24px;
+        background-position: -100px 0;
+        background-repeat: no-repeat;
+        animation: loading 1s infinite;
+    }
+  }

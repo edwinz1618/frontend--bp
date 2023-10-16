@@ -1,0 +1,18 @@
+<div class="modal" [ngClass]="{'show': show }">
+    <div class="modal-dialog">
+        <div class="modal-dialog__content">
+            <section class="modal-dialog__header">
+                <h5 class="modal-title">¿Estas seguro de eliminar el producto {{ title }} ?</h5>
+            </section>
+
+            <section class="modal-dialog__line"></section>
+
+            <section class="modal-dialog__actions">
+                <button class="btn-secundary" type="button" (click)="modalService.closeModal()">Cancelar</button>
+                <button class="btn-primary" type="button" (click)="confirm()">Confirmar</button>
+            </section>
+        </div>
+    </div>
+</div>
+
+<div class="modal-background" [ngClass]="{'show': show}" (click)="modalService.closeModal()"></div>

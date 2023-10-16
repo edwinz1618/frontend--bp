@@ -1,0 +1,57 @@
+<div class="container">
+    <div>
+        <img src="assets/svg/arrow-left.svg" routerLink="/" class="container__arrow">
+    </div>
+    <form class="container__form" [formGroup]="form" (ngSubmit)="insertProduct()">
+        <div class="container__form-title">
+            <span >Formulario de {{title}}</span>
+        </div>
+        <div class="container__form-separator"></div>
+        <div class="row mt-15">
+            <div class="form-group col-6">
+                <span>ID</span>
+                <input type="text" formControlName="id" [ngClass]="{'invalid': idField.invalid && idField.touched}">
+                <span class="invalid">{{getError(idField)}}</span>
+                <span *ngIf="msgValidation" class="invalid">{{msgValidation}}</span>
+            </div>
+            <div class="form-group  col-6">  
+                <span>Nombre</span>
+                <input type="text" formControlName="name" [ngClass]="{'invalid':nameField.invalid && nameField.touched}">
+                <span  class="invalid">{{getError(nameField)}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-6">
+                <span>Descripción</span>
+                <input type="text" formControlName="description" [ngClass]="{'invalid': descriptionField.invalid && descriptionField.touched}">
+                <span  class="invalid">{{getError(descriptionField)}}</span>
+            </div>
+            <div class="form-group  col-6">  
+                <span>Logo</span>
+                <input type="text" formControlName="logo" [ngClass]="{'invalid': logoField.invalid && logoField.touched}">
+                <span  class="invalid">{{getError(logoField)}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-6">
+                <span>Fecha de liberacion</span>
+                <input type="date" formControlName="releaseDate" (change)="getReviewDate()"
+                    [ngClass]="{'invalid': releaseDateField.invalid && releaseDateField.touched}"
+                    [min]="currentDate | date: 'yyyy-MM-dd'">
+                <span  class="invalid">{{getError(releaseDateField)}}</span>
+            </div>
+            <div class="form-group  col-6">  
+                <span>Fecha de Revisión</span>
+                <input type="text" formControlName="reviewDate" [ngClass]="{'invalid': reviewDateField.invalid && reviewDateField.touched}">
+                <span  class="invalid">{{getError(reviewDateField)}}</span>
+            </div>
+        </div>
+        <div class="container__form-footer">
+            <button class="btn-secundary" (click)="restart()" type="button">Reiniciar</button>
+            <button class="btn-primary" [disabled]="isLoading" type="submit">Enviar</button>
+        </div>
+    </form>
+
+
+
+</div>

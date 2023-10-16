@@ -1,0 +1,26 @@
+@use 'color';
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &__header {
+        text-align: center;
+        background-color: white;
+        padding:  15px 0 0 0;
+    }
+
+    &__main {
+        flex: 1;
+        padding: 1em;
+    }
+}
+
+
+
+.content {
+    background-color: color.$grey;
+    height: 100%;
+}

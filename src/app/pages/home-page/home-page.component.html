@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="container__align-filter">
+        <input type="text" class="container__input" placeholder="Search" (keyup)="filter($event)">
+        <button class="btn-primary" (click)="addProduct()"> Agregar</button>
+    </div>
+
+    <div class="container-table">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="th-center ">Logo</th>
+                    <th>Nombre del producto</th>
+                    <th>
+                        <div class="info">Descripción <img src="assets/svg/icon-information.svg"></div>
+                    </th>
+                    <th>
+                        <div class="info">Fecha de liberación <img src="assets/svg/icon-information.svg"></div>
+                    </th>
+                    <th>
+                        <div class="info">Fecha de reestructuración <img src="assets/svg/icon-information.svg"></div>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngIf="!showSkeleton">
+                    <tr *ngFor="let item of getPaginatedElements()">
+                        <td class="th-center "><img class="img-logo" [src]="item.logo"></td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.description}}</td>
+                        <td>{{item.date_release | date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.date_revision | date:'dd/MM/yyyy'}}</td>
+                        <td>
+                            <div class="dropdown">
+                                <img src="assets/svg/icon-options.svg" class="icon-option">
+                                <div class="dropdown-content">
+                                    <p (click)="edit(item)">Editar</p>
+                                    <p (click)="openModalDelete(item)">Eliminar</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-container>
+                <ng-container *ngIf="showSkeleton">
+                    <tr *ngFor="let sk of listSkeleton">
+                        <td *ngFor="let sk of listSkeleton">
+                            <app-skeleton />
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+        <section class="footer">
+            <span>{{total}} Resultados</span>
+            <div>
+                <button (click)="previewPage()">&nbsp;<&nbsp; </button>
+                        Pág. {{actualPage}} de {{numberPages}}
+                        <button (click)="nextPage()">&nbsp;>&nbsp;</button>
+            </div>
+            <select #numberSelect id="select" class="footer-select" (change)="showNumberElements(numberSelect.value)">
+                <option value=5 selected>5</option>
+                <option value=10>10</option>
+                <option value=20>20</option>
+            </select>
+        </section>
+    </div>
+</div>
